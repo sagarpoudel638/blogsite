@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { createUser } from "../utils/axiosHelper";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
+  const [ userData, setUserdata ] = useState({
+    username:"",
+    email:"",
+    password:"",
+  });
+  const navigate = useNavigate(); 
+
+  const handleOnchange = (e) => {
+    const tempData = { ...userData };
+    tempData[e.target.name] = e.target.value;
+    setUserdata(tempData);
+  };
+
+  // const handleOnchange = (e) => {
+  //   const {name,value}=e.target;
+  //   // console.log(name,value)
+  //   setUserdata({...userData,[name]:value})
+  // };
+
+  const handleOnSubmit =async(e)=>{
+    e.preventDefault();
+    const response = await createUser(userData);
+    console.log(response)
+    if (response.status == "success") {
+      console.log("success");
+        navigate("/login");
+    } else {
+      console.log("error");
+    }
+
+  }
   return (
     <>
       <Container
@@ -15,7 +47,7 @@ const SignupPage = () => {
       >
         <Row>
           <Col>
-            <Form className="border p-4 rounded shadow">
+            <Form className="border p-4 rounded shadow" onSubmit={handleOnSubmit}>
               <Form.Group className="mb-3 d-flex align-items-center justify-content-center">
                 <Link to="/">
                   <Image
@@ -26,12 +58,14 @@ const SignupPage = () => {
                 </Link>
               </Form.Group>
               <hr />
-              <Form.Group className="mb-3" controlId="formBasicName">
+              <Form.Group className="mb-3"  controlId="formBasicName">
                 <Form.Label>User Name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="User name"
                   name="username"
+                  value={userData.username}
+                  onChange={handleOnchange}
                 />
               </Form.Group>
 
@@ -41,6 +75,8 @@ const SignupPage = () => {
                   type="email"
                   placeholder="Enter email"
                   name="email"
+                  value={userData.email}
+                  onChange={handleOnchange}
                 />
               </Form.Group>
 
@@ -50,6 +86,8 @@ const SignupPage = () => {
                   type="password"
                   placeholder="Password"
                   name="password"
+                  value={userData.password}
+                  onChange={handleOnchange}
                 />
               </Form.Group>
 
@@ -67,6 +105,5 @@ const SignupPage = () => {
       </Container>
     </>
   );
-};
-
+}; 
 export default SignupPage;

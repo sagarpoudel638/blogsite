@@ -1,9 +1,22 @@
 import { Container, Form, Nav, Navbar, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAuth } from "../utils/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate(); 
+  const [query, setQuery]=useState('');
+  const handleOnChange=(e)=>{
+    
+    setQuery(e.target.value);
+
+  }
+  const handleOnSubmit=(e)=>{
+e.preventDefault();
+navigate(`/search?query=${query}`)
+  }
 
   return (
     <>
@@ -35,14 +48,16 @@ const Header = () => {
             </Nav>
           </Navbar.Collapse>
 
-          <Form className="d-flex g-2">
+          <Form className="d-flex g-2" onSubmit={handleOnSubmit}>
             <Form.Control
               type="search"
+              onChange={handleOnChange}
               placeholder="Search"
               className="me-2"
+              value={query}
               aria-label="Search"
             />
-            <Button className="me-2" variant="outline-success">
+            <Button type="submit" className="me-2" variant="outline-success">
               Search
             </Button>
             {user ? (

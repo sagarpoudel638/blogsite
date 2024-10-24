@@ -11,7 +11,7 @@ const MyPostPage = () => {
   const [posts,setPosts]= useState([]);
   const fillPosts = async()=>{
     const response = await fetchMyPost();
-    setPosts(response.data);
+    setPosts(response.data??[]);
   }
   
   useEffect(()=>{
@@ -32,9 +32,16 @@ fillPosts();
         <Row className="mt-4">
           <Col className="text-center">
             <div className="d-flex gap-4 flex-wrap justify-content-center align-items-center">
-            {posts?.map(post => (
-        <PostCard key={post.id} post={post} />
-      ))}
+            {posts.map((post) => {
+                post.owner = true;
+                return (
+                  <PostCard
+                    key={post._id}
+                    post={post}
+                    //deleteFunction={deleteFunction}
+                  />
+                );
+              })}
             </div>
           </Col>
         </Row>

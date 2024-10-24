@@ -4,6 +4,15 @@ const postEP = rootAPI + "/post";
 const authEP = rootAPI + "/auth";
 const userEP = rootAPI + "/user";
 
+export const createUser = async (userData) => {
+  const obj = {
+    method: "post",
+    url: `${authEP}/signup`,
+    data: userData,
+  };
+  return await apiProcessor(obj);
+}
+
 export const userLogin = async (loginInfo) => {
   const obj = {
     method: "post",
@@ -58,7 +67,8 @@ export const fetchMyPost = async () => {
   
 }
 
-export const createpost=async (postData) => {
+export const createPost=async (postData) => {
+  let token = localStorage.getItem("jwtToken");
   const obj={
     method:"post",
     url:postEP,
@@ -78,6 +88,16 @@ export const deletePost=async () => {
     headers:{
       Authorization: 'Bearer ' + token
     },
+  };
+  return await apiProcessor(obj);
+}
+
+export const fetchSearchPost =async (query) => {
+
+  const obj={
+    method:"get",
+    url:postEP + "/search/:query",
+    data:query
   };
   return await apiProcessor(obj);
 }

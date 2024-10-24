@@ -2,11 +2,24 @@ import React, { useState } from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Header from "../components/Navbar";
 import Footer from "../components/footer";
-
+import { createPost } from "../utils/axiosHelper";
 const CreatePostPage = () => {
-  const { post, setPost } = useState([]);
+  const [ formData, setFormData ] = useState({
+    title:"",
+    content:"",
+    image:""
+  });
 
+  const handleOnchange = (e) => {
+    const tempData = { ...formData };
+    tempData[e.target.name] = e.target.value;
+    setFormData(tempData);
 
+    // setFormData({
+    //   ...formData,
+    //   [e.target.name]: e.target.value,
+    // });
+  };
 
   const handleOnsubmit = async (e) => {
     e.preventDefault();
@@ -18,9 +31,7 @@ const CreatePostPage = () => {
     }
   };
 
-  const handleOnchange = ()=>{
-// const tempData = 
-  }
+ 
 
   return (
     <>
@@ -42,7 +53,7 @@ const CreatePostPage = () => {
                   placeholder="Enter post title"
                   required
                   name="title"
-                  value={title}
+                  value={formData.title}
                   onChange={handleOnchange}
                 />
               </Form.Group>
@@ -55,7 +66,7 @@ const CreatePostPage = () => {
                   placeholder="Enter post content"
                   required
                   name="content"
-                  value={content}
+                  value={formData.content}
                   onChange={handleOnchange}
                 />
               </Form.Group>
@@ -66,7 +77,7 @@ const CreatePostPage = () => {
                   type="text"
                   placeholder="Enter image URL"
                   name="image"
-                  value={image}
+                  value={formData.image}
                   onChange={handleOnchange}
                 />
               </Form.Group>

@@ -9,6 +9,7 @@ import PostPage from "./pages/PostPage";
 import MyPostPage from "./pages/MyPostPage";
 import CreatePostPage from "./pages/CreatePostPage";
 import { Auth } from "./auth/Auth";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
 
         <Route path="/article" element={<PostPage />} />
-
+        <Route path="/search" element={<SearchPage />} />
         <Route
           path="/mypost"
           element={
