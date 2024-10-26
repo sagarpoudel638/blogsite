@@ -20,7 +20,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
 
         <Route path="/article" element={<PostPage />} />
-        <Route path="/search" element={<SearchPage />} />
+        <Route path="/search/:query" element={<SearchPage />} />
         <Route
           path="/mypost"
           element={

@@ -157,14 +157,17 @@ router.delete("/:id", authenticateJWT, async (req, res) => {
 router.get("/search/:query", async (req, res) => {
   try {
     const { query } = req.params;
+   // const queryparam = req.params.query;
+    console.log("queryparams",query)
     const postData = await searchPost({
-      title: { $regex: new RegExp(query, "i") },
+      title:{ $regex: new RegExp(query, "i") },
     });
     const respObj = {
       status: "success",
-      message: "post found",
+      message: postData.length > 0 ? "Post(s) found" : "No posts found",
       data: postData,
     };
+    console.log("response:",respObj)
     return res.status(200).send(respObj);
   } catch (err) {
     const errObj = {

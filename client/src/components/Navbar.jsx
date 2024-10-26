@@ -15,7 +15,9 @@ const Header = () => {
   }
   const handleOnSubmit=(e)=>{
 e.preventDefault();
-navigate(`/search?query=${query}`)
+//navigate(`/search?query=${query}`);
+navigate(`/search/${query}`);
+console.log("search query: ",query)
   }
 
   return (

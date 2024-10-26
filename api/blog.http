@@ -39,7 +39,8 @@ GET {{api_url}}/post
 # Create Post
 # #@prompt bearer_token
 POST {{api_url}}/post
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzEwNDczYmFkMjY3YjM1YzVhMzg5MTgiLCJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwiaWF0IjoxNzI5NjUwMjIzLCJleHAiOjE3Mjk3MzY2MjN9.3Qg5h_oFlfFarbYIa-wG__CQjc9TP7pd3sTkKtD_ce0
+
 {
   "title": "Post 5",
   "content": "Content of POST",
@@ -65,3 +66,5 @@ Authorization: Bearer {{bearer_token}}
 GET {{api_url}}/user/post
 Authorization: Bearer {{bearer_token}}
 
+### Search posts 
+GET {{api_url}}/post/search/post

@@ -96,7 +96,7 @@ export const fetchSearchPost =async (query) => {
 
   const obj={
     method:"get",
-    url:postEP + "/search/:query",
+    url:postEP + `/search/${query}`,
     data:query
   };
   return await apiProcessor(obj);

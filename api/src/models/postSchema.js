@@ -64,9 +64,11 @@ export const deletePost = async (id) => {
 };
 
 export const searchPost = async (query, projection) => {
-  const data = Post.find(query, projection).populate({
+  console.log(query,300)
+  const data =  await Post.find(query, projection).populate({
     path: "author",
     select: "-_id",
   });
-  return data;
+  console.log(data,200)
+   return  data;
 };
