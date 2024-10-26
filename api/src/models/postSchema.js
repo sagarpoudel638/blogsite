@@ -37,7 +37,7 @@ export const getPostById = async (id) => {
   return await Post.findById(id)
     .populate({
       path: "author",
-      select: "-_id",
+      select: "_id",
     })
     .exec();
 };
@@ -60,6 +60,7 @@ export const updatePost = async (id, post) => {
 };
 
 export const deletePost = async (id) => {
+  //console.log("schema",id)
   await Post.findByIdAndDelete(id);
 };
 

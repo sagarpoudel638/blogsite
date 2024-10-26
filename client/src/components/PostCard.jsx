@@ -3,17 +3,11 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { deletePost } from "../utils/axiosHelper";
 
-const PostCard = ({ post }) => {
-  const deleteFuntion=async(id)=>{
-const response = await deletePost(id);
-if (response.status=="success") {
-  console.log("success")
-  
-}
-else{
-  console.log("error")
-}
+const PostCard = ({ post,deleteFunction }) => {
+  const handleDelete=async()=>{
+  deleteFunction(post._id)
   }
   return (
     <>
@@ -31,7 +25,7 @@ else{
               style={{ textDecoration: "none", color: "inherit" }}
             >
               {post.title}
-            </Link>
+            </Link> 
 
             {post.owner ? (
               <FontAwesomeIcon
@@ -39,7 +33,7 @@ else{
                 size="sm"
                 style={{ cursor: "pointer", color: "black" }}
                 title="Delete Article"
-                onClick={deleteFuntion} // Example action
+                onClick={handleDelete} // Example action
               />
             ) : (
               ""

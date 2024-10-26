@@ -101,11 +101,14 @@ router.get("/:id", async (req, res) => {
 // delete post
 router.delete("/:id", authenticateJWT, async (req, res) => {
   try {
-    const { id } = req.params;
+    const pid = req.params.id;
+    //const { pid } = req.params;
     const { user } = req;
 
-    const postData = await getPostById(id);
-
+    const postData = await getPostById(pid);
+console.log(pid)
+console.log(postData.author)
+// console.log(postData)
     if (!postData) {
       const errObj = {
         status: "error",
@@ -119,7 +122,8 @@ router.delete("/:id", authenticateJWT, async (req, res) => {
       return res.status(404).send(errObj);
     }
 
-    if (postData.author._id.toString() !== user._id) {
+    if (postData.author._id.toString()!== user._id) {
+      console.log(`author id: ${postData.author._id}`)
       const errObj = {
         status: "error",
         message: "Unauthorized",
@@ -131,8 +135,8 @@ router.delete("/:id", authenticateJWT, async (req, res) => {
 
       return res.status(403).send(errObj);
     }
-
-    await deletePost(id);
+// console.log(id)
+    await deletePost(pid);
 
     const respObj = {
       status: "success",

@@ -43,7 +43,7 @@ const SearchPage = () => {
     }
   useEffect(() => {
     searchPost();
-  }, [query]);
+  }, []);
 
 
 if (loading) return <Spinner animation="border" />; // Use a spinner for loading state
@@ -62,7 +62,7 @@ if (loading) return <Spinner animation="border" />; // Use a spinner for loading
               {posts.map((post) => (
                 <PostCard key={post._id} post={post} />
               ))}
-              <h1>Search</h1>
+              
             </div>
           </Col>
         </Row>

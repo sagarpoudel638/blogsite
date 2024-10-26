@@ -80,11 +80,11 @@ export const createPost=async (postData) => {
   return await apiProcessor(obj);
 }
 
-export const deletePost=async () => {
+export const deletePost=async (postId) => {
+  let token = localStorage.getItem("jwtToken");
   const obj={
     method:"delete",
-    url:postEP + "/:id",
-    data:postData,
+    url:postEP + `/${postId}`,
     headers:{
       Authorization: 'Bearer ' + token
     },

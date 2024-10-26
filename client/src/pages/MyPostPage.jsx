@@ -5,10 +5,22 @@ import PostCard from "../components/PostCard";
 import Footer from "../components/footer";
 import { FloatingButton } from "../components/FloatingButton";
 import { Link } from "react-router-dom";
-import { fetchMyPost } from "../utils/axiosHelper";
+import { deletePost, fetchMyPost } from "../utils/axiosHelper";
 
 const MyPostPage = () => {
   const [posts,setPosts]= useState([]);
+
+  const deleteFunction =async(_id)=>{
+    const response = await deletePost(_id);
+    console.log(response)
+    if (response.status=="success") {
+      console.log("success")
+      
+    }
+    else{
+      console.log("error")
+    }
+  }
   const fillPosts = async()=>{
     const response = await fetchMyPost();
     setPosts(response.data??[]);
@@ -18,6 +30,8 @@ const MyPostPage = () => {
 fillPosts();
 
   },[])
+
+  
   return (
     <>
       <Header />
@@ -38,7 +52,7 @@ fillPosts();
                   <PostCard
                     key={post._id}
                     post={post}
-                    //deleteFunction={deleteFunction}
+                    deleteFunction={deleteFunction}
                   />
                 );
               })}
