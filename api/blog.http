@@ -1,0 +1,68 @@
+@api_url = http://localhost:9000/api/v1
+
+###
+# fetch user by id
+# @prompt bearer_token
+GET {{api_url}}/user/profile
+Authorization: Bearer {{bearer_token}}
+
+
+###
+# Signup user
+POST {{api_url}}/auth/signup
+Content-Type: application/json
+
+{
+  "username":"sagar",
+  "email" : "sagar@email.com",
+  "password": "sagar"
+}
+
+###
+
+# login
+POST {{api_url}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@email.com",
+  "password" : "password"
+}
+
+###
+
+# Get All Post
+GET {{api_url}}/post
+
+###
+
+# Create Post
+# #@prompt bearer_token
+POST {{api_url}}/post
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzEwNDczYmFkMjY3YjM1YzVhMzg5MTgiLCJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwiaWF0IjoxNzI5NjUwMjIzLCJleHAiOjE3Mjk3MzY2MjN9.3Qg5h_oFlfFarbYIa-wG__CQjc9TP7pd3sTkKtD_ce0
+
+{
+  "title": "Post 5",
+  "content": "Content of POST",
+  "image":"https://picsum.photos/200/500"
+}
+
+###
+# Get Post Detail
+# @prompt id
+GET {{api_url}}/post/{{id}}
+
+
+###
+# Delete Post
+# @prompt bearer_token
+@post_id = 670e474d2121144d3b15ef17
+DELETE {{api_url}}/post/{{post_id}}
+Authorization: Bearer {{bearer_token}}
+
+
+###
+# @prompt bearer_token
+GET {{api_url}}/user/post
+Authorization: Bearer {{bearer_token}}
+
