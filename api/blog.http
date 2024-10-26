@@ -39,8 +39,7 @@ GET {{api_url}}/post
 # Create Post
 # #@prompt bearer_token
 POST {{api_url}}/post
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzEwNDczYmFkMjY3YjM1YzVhMzg5MTgiLCJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwiaWF0IjoxNzI5NjUwMjIzLCJleHAiOjE3Mjk3MzY2MjN9.3Qg5h_oFlfFarbYIa-wG__CQjc9TP7pd3sTkKtD_ce0
-
+Authorization: Bearer 
 {
   "title": "Post 5",
   "content": "Content of POST",
