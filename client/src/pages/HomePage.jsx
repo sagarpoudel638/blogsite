@@ -19,7 +19,7 @@ const HomePage = () => {
         throw new Error(response.message);
         setPosts([]);
       } else {
-        console.log(response.data);
+        // console.log(response.data);
         setPosts(response.data); // Ensure you access the correct data property
       }
     } catch (err) {

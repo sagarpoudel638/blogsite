@@ -2,7 +2,7 @@
 @bearer_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzEwNDczYmFkMjY3YjM1YzVhMzg5MTgiLCJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwiaWF0IjoxNzI5OTE5ODk2LCJleHAiOjE3MzAwMDYyOTZ9.64jKv46aVtN8BllBl9mvK04uUQkWHgstE8RPozVDdXg
 ###
 # fetch user by id
-# @prompt bearer_token
+###@prompt bearer_token
 GET {{api_url}}/user/profile
 Authorization: Bearer {{bearer_token}}
 
@@ -56,7 +56,7 @@ GET {{api_url}}/post/{{id}}
 ###
 # Delete Post
 # ##@prompt bearer_token
-@post_id = 6719794ed9e2e5163fa8e33a
+@post_id = 671c8c164edb7ec70740135b
 DELETE {{api_url}}/post/{{post_id}}
 Authorization: Bearer {{bearer_token}}
 
