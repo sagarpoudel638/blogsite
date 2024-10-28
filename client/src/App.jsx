@@ -25,8 +25,8 @@ function App() {
           path="/mypost"
           element={
             <Auth>
-              {" "}
-              <MyPostPage />{" "}
+              
+              <MyPostPage />
             </Auth>
           }
         />
