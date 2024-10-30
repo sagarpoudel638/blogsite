@@ -5,6 +5,7 @@ import {
   getPostById,
   getPosts,
   searchPost,
+  updatePost,
 } from "../models/postSchema.js";
 import { authenticateJWT } from "../middleware/authenticate.js";
 
@@ -186,5 +187,31 @@ router.get("/search/:query", async (req, res) => {
     return res.status(500).send(errObj);
   }
 });
+
+router.post("/comment/:id", authenticateJWT,async (req,res) => {
+  
+
+  try {
+    const { id } =req.params;
+  const { comment }= req.body;
+    const postData = await getPostById(id);
+    let commentList = postData.comments;
+    let newCommentObj = {
+      comment : comment,
+      userid: req.userid,
+    }
+    commentList.push(newCommentObj)
+
+    const updateData = await updatePost(id,{comments:commentList})
+    const respObj ={
+      status: "success",
+      message: postData.length > 0 ? "Post(s) found" : "No posts found",
+      data: updateData,
+    }
+     return res.status(200).send(respObj);
+  } catch (error) {
+    
+  }
+})
 
 export default router;

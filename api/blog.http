@@ -68,3 +68,9 @@ Authorization: Bearer {{bearer_token}}
 
 ### Search posts 
 GET {{api_url}}/post/search/post
+
+
+###comment
+@post_id = 67217fca6d471a6521d0d104
+POST {{api_url}}/post/comment/{{post_id}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzEwNDczYmFkMjY3YjM1YzVhMzg5MTgiLCJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwiaWF0IjoxNzMwMjU0MzEwLCJleHAiOjE3MzAzNDA3MTB9.OXmztUzcge1Xa5M6rQKTyAc4yxqmAwm6ni47I1rZKxM

@@ -5,6 +5,7 @@ import { Col, Container, Row, Image } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { fetchPost } from "../utils/axiosHelper";
 import Footer from "../components/footer";
+import { Comments } from "../components/Comments";
 
 const PostPage = () => {
   // Sample data for the article
@@ -13,7 +14,8 @@ const PostPage = () => {
     content: ``,
     author: "",
     date: "",
-    image: "/blog1.jpg", // Placeholder image
+    image: "/blog1.jpg",
+    comments:{} // Placeholder image
   });
 
   const location = useLocation();
@@ -26,6 +28,7 @@ const PostPage = () => {
       setPost({});
     } else {
       setPost(response.data);
+     //console.log(response.data)
     }
   };
 
@@ -61,13 +64,19 @@ const PostPage = () => {
                 <strong>Written by:</strong> {post.author?.username}
               </p>
               <p>
-                <small>{post.date}</small>
+                <small>{post.createdAt
+                }</small>
               </p>
             </div>
+            <p>{post.comments.comment}</p>
+            <Comments 
+            comment={post.comments ?? "No comments"}
+            />
           </Col>
+          
         </Row>
+        
       </Container>
-
       <Footer/>
     </>
   );

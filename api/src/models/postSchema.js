@@ -22,6 +22,19 @@ const postSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  comments:[
+    {
+      comment:{type: String, required: true},
+      userid:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+        required:true
+      },
+      commentedAT:{type:Date,
+        
+      }
+    }
+  ]
 });
 
 export const Post = mongoose.model("post", postSchema);
@@ -65,11 +78,11 @@ export const deletePost = async (id) => {
 };
 
 export const searchPost = async (query, projection) => {
-  console.log(query,300)
+  // console.log(query,300)
   const data =  await Post.find(query, projection).populate({
     path: "author",
     select: "-_id",
   });
-  console.log(data,200)
+  // console.log(data,200)
    return  data;
 };

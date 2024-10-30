@@ -101,3 +101,16 @@ export const fetchSearchPost =async (query) => {
   };
   return await apiProcessor(obj);
 }
+
+export const Comment =async (id,commentObj) => {
+  let token = localStorage.getItem("jwtToken");
+  const obj={
+    method:"post",
+    url:postEP + `/comment/${id}`,
+    data:commentObj,
+    headers:{
+      Authorization: 'Bearer ' + token
+    },
+  };
+  return await apiProcessor(obj);
+}
